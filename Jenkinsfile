@@ -5,7 +5,7 @@ pipeline {
             agent { label 'default-java' }
             when {
                 changeset "**/frontend/*.*"
-                beforeAgent false
+                beforeAgent true
             }
             steps {
                 dir('frontend') {
@@ -17,7 +17,7 @@ pipeline {
             agent { label 'default-java' }
             when {
                 changeset "**/backend/web/*.*"
-                beforeAgent false
+                beforeAgent true
             }
             steps {
                dir ('backend/web') {
@@ -29,7 +29,7 @@ pipeline {
             agent { label 'default-java' }
             when {
                 changeset "**/backend/api/*.*"
-                beforeAgent false
+                beforeAgent true
             }
             steps {
                dir ('backend/api') {
