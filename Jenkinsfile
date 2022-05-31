@@ -2,41 +2,38 @@ pipeline {
     agent none
     stages {
         stage('Build Frontend') {
-            agent { docker { image 'my-node-agent' } }
+            agent { label 'default-java' }
             when {
                 changeset "**/frontend/*.*"
                 beforeAgent true
             }
             steps {
                 dir('frontend') {
-                  sh 'npm install'
-                  sh '...'
+                  sh 'echo Hello Build Frontend!'
                 }
             }
         }
         stage('Build Web') {
-            agent { docker { image 'my-maven-agent' } }
+            agent { label 'default-java' }
             when {
                 changeset "**/backend/web/*.*"
                 beforeAgent true
             }
             steps {
                dir ('backend/web') {
-                sh 'mvn -B -DskipTests clean package'
-                sh '...'
+                sh 'echo Hello Build Web!'
                }
             }
         }
         stage('Build REST API') {
-            agent { docker { image 'my-golang-agent' } }
+            agent { label 'default-java' }
             when {
                 changeset "**/backend/api/*.*"
                 beforeAgent true
             }
             steps {
                dir ('backend/api') {
-                 sh 'go build'
-                 sh '...'
+                 sh 'echo Build REST API!'
                }
             }
         }
